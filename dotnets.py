@@ -5,11 +5,12 @@
 # April, 2018 - 2to3 - Madhavun Candadai
 # September, 2022 - formatting and simplifying make
 
-layers = [3, 5, 5, 5, 5, 2]
+LAYERS = [3, 5, 5, 5, 5, 2]
 
-layers_str = ["Input"] + ["Hidden"] * (len(layers) - 2) + ["Output"]
-layers_col = ["none"] + ["none"] * (len(layers) - 2) + ["none"]
-layers_fill = ["black"] + ["gray"] * (len(layers) - 2) + ["black"]
+
+layers_str = ["Input"] + ["Hidden"] * (len(LAYERS) - 2) + ["Output"]
+layers_col = ["none"] + ["none"] * (len(LAYERS) - 2) + ["none"]
+layers_fill = ["black"] + ["gray"] * (len(LAYERS) - 2) + ["black"]
 
 penwidth = 15
 font = "Hilda 10"
@@ -27,7 +28,7 @@ print(
 )
 
 # Clusters
-for i in range(0, len(layers)):
+for i in range(0, len(LAYERS)):
     print(("\tsubgraph cluster_{} {{".format(i)))
     print(("\t\tcolor={};".format(layers_col[i])))
     print(
@@ -39,7 +40,7 @@ for i in range(0, len(layers)):
 
     print(("\t\t"), end=" ")
 
-    for a in range(layers[i]):
+    for a in range(LAYERS[i]):
         print("l{}{} ".format(i + 1, a), end=" ")
 
     print(";")
@@ -48,9 +49,9 @@ for i in range(0, len(layers)):
     print("\t}\n")
 
 # Nodes
-for i in range(1, len(layers)):
-    for a in range(layers[i - 1]):
-        for b in range(layers[i]):
+for i in range(1, len(LAYERS)):
+    for a in range(LAYERS[i - 1]):
+        for b in range(LAYERS[i]):
             print("\tl{}{} -> l{}{}".format(i, a, i + 1, b))
 
 print("}")
