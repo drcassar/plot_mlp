@@ -6,18 +6,18 @@
 # September, 2022 - formatting and simplifying make
 
 LAYERS = [3, 5, 5, 5, 5, 2]
+PENWIDTH = 15
+FONT = "Hilda 10"
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
 
     layers_str = ["Input"] + ["Hidden"] * (len(LAYERS) - 2) + ["Output"]
     layers_col = ["none"] + ["none"] * (len(LAYERS) - 2) + ["none"]
     layers_fill = ["black"] + ["gray"] * (len(LAYERS) - 2) + ["black"]
 
-    penwidth = 15
-    font = "Hilda 10"
-
     print("digraph G {")
-    print('\tfontname = "{}"'.format(font))
+    print('\tfontname = "{}"'.format(FONT))
     print("\trankdir=LR")
     print("\tsplines=line")
     print("\tnodesep=.08;")
@@ -34,8 +34,8 @@ if __name__ == '__main__':
         print(("\t\tcolor={};".format(layers_col[i])))
         print(
             (
-                "\t\tnode [style=filled, color=white, penwidth={},"
-                "fillcolor={} shape=circle];".format(penwidth, layers_fill[i])
+                "\t\tnode [style=filled, color=white, PENWIDTH={},"
+                "fillcolor={} shape=circle];".format(PENWIDTH, layers_fill[i])
             )
         )
 
