@@ -3,7 +3,7 @@
 
 # UPDATE HISTORY
 # April, 2018 - 2to3 - Madhavun Candadai
-# September, 2022 - formatting and simplifying make
+# September, 2022 - formatting and simplifying make - Daniel Cassar
 
 LAYERS = [3, 5, 5, 5, 5, 2]
 PENWIDTH = 15
