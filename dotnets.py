@@ -7,51 +7,52 @@
 
 LAYERS = [3, 5, 5, 5, 5, 2]
 
+if __name__ == '__main__':
 
-layers_str = ["Input"] + ["Hidden"] * (len(LAYERS) - 2) + ["Output"]
-layers_col = ["none"] + ["none"] * (len(LAYERS) - 2) + ["none"]
-layers_fill = ["black"] + ["gray"] * (len(LAYERS) - 2) + ["black"]
+    layers_str = ["Input"] + ["Hidden"] * (len(LAYERS) - 2) + ["Output"]
+    layers_col = ["none"] + ["none"] * (len(LAYERS) - 2) + ["none"]
+    layers_fill = ["black"] + ["gray"] * (len(LAYERS) - 2) + ["black"]
 
-penwidth = 15
-font = "Hilda 10"
+    penwidth = 15
+    font = "Hilda 10"
 
-print("digraph G {")
-print('\tfontname = "{}"'.format(font))
-print("\trankdir=LR")
-print("\tsplines=line")
-print("\tnodesep=.08;")
-print("\tranksep=1;")
-print("\tedge [color=black, arrowsize=.5];")
-print(
-    '\tnode [fixedsize=true,label="",style=filled,'
-    + "color=none,fillcolor=gray,shape=circle]\n"
-)
-
-# Clusters
-for i in range(0, len(LAYERS)):
-    print(("\tsubgraph cluster_{} {{".format(i)))
-    print(("\t\tcolor={};".format(layers_col[i])))
+    print("digraph G {")
+    print('\tfontname = "{}"'.format(font))
+    print("\trankdir=LR")
+    print("\tsplines=line")
+    print("\tnodesep=.08;")
+    print("\tranksep=1;")
+    print("\tedge [color=black, arrowsize=.5];")
     print(
-        (
-            "\t\tnode [style=filled, color=white, penwidth={},"
-            "fillcolor={} shape=circle];".format(penwidth, layers_fill[i])
-        )
+        '\tnode [fixedsize=true,label="",style=filled,'
+        + "color=none,fillcolor=gray,shape=circle]\n"
     )
 
-    print(("\t\t"), end=" ")
+    # Clusters
+    for i in range(0, len(LAYERS)):
+        print(("\tsubgraph cluster_{} {{".format(i)))
+        print(("\t\tcolor={};".format(layers_col[i])))
+        print(
+            (
+                "\t\tnode [style=filled, color=white, penwidth={},"
+                "fillcolor={} shape=circle];".format(penwidth, layers_fill[i])
+            )
+        )
 
-    for a in range(LAYERS[i]):
-        print("l{}{} ".format(i + 1, a), end=" ")
+        print(("\t\t"), end=" ")
 
-    print(";")
-    print(("\t\tlabel = {};".format(layers_str[i])))
+        for a in range(LAYERS[i]):
+            print("l{}{} ".format(i + 1, a), end=" ")
 
-    print("\t}\n")
+        print(";")
+        print(("\t\tlabel = {};".format(layers_str[i])))
 
-# Nodes
-for i in range(1, len(LAYERS)):
-    for a in range(LAYERS[i - 1]):
-        for b in range(LAYERS[i]):
-            print("\tl{}{} -> l{}{}".format(i, a, i + 1, b))
+        print("\t}\n")
 
-print("}")
+    # Nodes
+    for i in range(1, len(LAYERS)):
+        for a in range(LAYERS[i - 1]):
+            for b in range(LAYERS[i]):
+                print("\tl{}{} -> l{}{}".format(i, a, i + 1, b))
+
+    print("}")
